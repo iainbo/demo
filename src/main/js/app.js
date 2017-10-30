@@ -15,6 +15,7 @@ class App extends React.Component{
         this.state = {employees: [], attributes: [], pageSize: 2, links: {}};
         this.updatePageSize = this.updatePageSize.bind(this);
         this.onCreate = this.onCreate.bind(this);
+        this.onUpdate = this.onUpdate.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.onNavigate = this.onNavigate.bind(this);
     }
@@ -73,6 +74,27 @@ class App extends React.Component{
                 this.onNavigate(response.entity._links.self.href);
             }
         });
+    }
+
+    onUpdate(employee, updatedEmployee){
+        client({
+            method: 'PUT',
+            path: employee.entity._links.self.href,
+            entity: updateEmployee,
+            headers: {
+                'Content-Type': 'application/json',
+                'If-Match': employee.headers.Etag
+            }
+        }).done(response =>{
+            this.loadFromServer(this.state.pageSize);
+        }), response => {
+            if(response => {
+                    if(response.status.code === 412){
+                        alert('DENIED: Unable to update ' +
+                        emplyee.entity._links.self.href + ' . Your copy is stale');
+                    }
+                });
+        }
     }
 
     onDelete(employee){
@@ -173,6 +195,54 @@ class CreateDialog extends React.Component{
         )
     }
 }
+
+class UpdateDialog extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+        var updatedEmployee = {};
+        this.props.attributes.forEach(attribute => {
+            updatedEmployee[attribute] = ReactDom.findDOMNode(this.refs[attribute])
+        });
+        this.props.onUpdate(this.props.employee, updatedEmployee);
+        window.location = "#";
+    }
+
+    render(){
+        var inputs = this.props.attributes.map(attribute =>
+            <p key={this.props.employee.entity[attribute]}>
+                <input type="text" placeholder={attribute}
+                       defaultValue={this.props.employee.entity[attribute]}
+                       ref={attribute} className="field" />
+            </p>
+        );
+
+        var dialogId = "updateEmployee-" + this.props.employee.entity._links.self.href;
+
+        return (
+            <div key={this.props.employee.entity._links.self.href}>
+                <a href={"#" + dialogId}>Update</a>
+                <div id={dialogId} className="modalDialog">
+                    <div>
+                        <a href="#" title="Close" className="close">X</a>
+
+                        <h2>Create New Employee</h2>
+
+                        <form>
+                            {inputs}
+                            <button onClick={this.handleSubmit}>Create</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+};
 
 class EmployeeList extends React.Component{
 
@@ -276,6 +346,11 @@ class Employee extends React.Component{
                 <td>{this.props.employee.firstName}</td>
                 <td>{this.props.employee.lastName}</td>
                 <td>{this.props.employee.description}</td>
+                <td>
+                    <UpdateDialog employee={this.props.employee}
+                                    attributes={this.props.attributes}
+                                    onUpdate={this.props.onUpdate}/>
+                </td>
                 <td>
                     <button onClick={this.handleDelete}>Delete</button>
                 </td>
