@@ -2,6 +2,7 @@
 
 const React = require('react');
 const ReactDom = require('react-dom');
+const when = require('when');
 const client = require('./client');
 
 const follow = require('./follow');
@@ -78,23 +79,21 @@ class App extends React.Component{
 
     onUpdate(employee, updatedEmployee){
         client({
-            method: 'PUT',
-            path: employee.entity._links.self.href,
-            entity: updateEmployee,
-            headers: {
-                'Content-Type': 'application/json',
-                'If-Match': employee.headers.Etag
-            }
+           method: 'PUT',
+           path: employee.entity._links.self.href,
+           entity: updatedEmployee,
+           headers: {
+               'Content-Type': 'application/json',
+               'If-Match': employee.headers.Etag
+           }
         }).done(response =>{
             this.loadFromServer(this.state.pageSize);
-        }), response => {
-            if(response => {
-                    if(response.status.code === 412){
-                        alert('DENIED: Unable to update ' +
-                        emplyee.entity._links.self.href + ' . Your copy is stale');
-                    }
-                });
-        }
+        }, response =>{
+            if(response.status.code ===412){
+                alert('DENIED: Unable to update '+
+                employee.entity._links.self.href + '. Your copy is stale.');
+            }
+        });
     }
 
     onDelete(employee){
@@ -141,7 +140,9 @@ class App extends React.Component{
                 <EmployeeList employees={this.state.employees}
                               links={this.state.links}
                               pageSize={this.state.pageSize}
+                              attributes={this.state.attributes}
                               onNavigate={this.onNavigate}
+                              onUpdate={this.onUpdate}
                               onDelete={this.onDelete}
                               updatePageSize={this.updatePageSize}/>
             </div>
@@ -207,7 +208,7 @@ class UpdateDialog extends React.Component{
         e.preventDefault();
         var updatedEmployee = {};
         this.props.attributes.forEach(attribute => {
-            updatedEmployee[attribute] = ReactDom.findDOMNode(this.refs[attribute])
+            updatedEmployee[attribute] = ReactDom.findDOMNode(this.refs[attribute]).value.trim();
         });
         this.props.onUpdate(this.props.employee, updatedEmployee);
         window.location = "#";
@@ -289,7 +290,11 @@ class EmployeeList extends React.Component{
 
     render(){
         var employees = this.props.employees.map(employee =>
-            <Employee key={employee._links.self.href} employee={employee} onDelete={this.props.onDelete}/>
+            <Employee key={employee.entity._links.self.href}
+                      employee={employee}
+                      attributes={this.props.attributes}
+                      onUpdate={this.props.onUpdate}
+                      onDelete={this.props.onDelete}/>
         );
 
         var navLinks = [];
@@ -316,6 +321,7 @@ class EmployeeList extends React.Component{
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Description</th>
+                            <th></th>
                             <th></th>
                         </tr>
                         {employees}
