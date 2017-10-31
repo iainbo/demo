@@ -7,7 +7,7 @@ function register(registrations){
     var socket = SockJs('/demo');
     var stompClient = Stomp.over(socket);
 
-    stompCLient.connect({}, function(frame){
+    stompClient.connect({}, function(frame){
         registrations.forEach(function (registrtion) {
             stompClient.subscribe(registrtion.route, registrtion.callback)
         });
