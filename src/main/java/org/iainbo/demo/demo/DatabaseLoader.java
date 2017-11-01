@@ -2,33 +2,54 @@ package org.iainbo.demo.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner{
 
-    private final EmployeeRepository repository;
+    private final EmployeeRepository employees;
+    private final ManagerRepository managers;
 
     @Autowired
-    public DatabaseLoader(EmployeeRepository repository){
-        this.repository = repository;
+    public DatabaseLoader(EmployeeRepository employeeRepository, ManagerRepository managerRepository){
+        this.employees = employeeRepository;
+        this.managers = managerRepository;
     }
 
     @Override
     public void run(String... strings) throws Exception{
-       this.repository.save(new Employee("Henrik", "Larsson", "Striker"));
 
-       this.repository.save(new Employee("Jock", "Stein", "Manager"));
-       this.repository.save(new Employee("Ronnie", "Simpson", "Goalkeeper"));
-       this.repository.save(new Employee("Jim", "Craig", "Right Back"));
-       this.repository.save(new Employee("Tommy", "Gemmel", "Left Back"));
-       this.repository.save(new Employee("Bobby", "Murdoch", "Righ Half"));
-       this.repository.save(new Employee("Billy", "McNeill", "Centre Half"));
-       this.repository.save(new Employee("John", "Clark", "Centre Half"));
-       this.repository.save(new Employee("Jimmy", "Johnstone", "Outside Right"));
-       this.repository.save(new Employee("Willie", "Wallace", "Centre Forward"));
-       this.repository.save(new Employee("Stevie", "Chalmers", "Centre Forward"));
-       this.repository.save(new Employee("Bertie", "Auld", "Left Half"));
-       this.repository.save(new Employee("Bobby", "Lennox", "Outside Left"));
+        Manager jock = this.managers.save(new Manager("Jock", "password", "ROLE_MANAGER"));
+        Manager martin = this.managers.save(new Manager("Martin", "password", "ROLE_MANAGER"));
+
+        SecurityContextHolder.getContext()
+                .setAuthentication(new UsernamePasswordAuthenticationToken
+                        ("Martin", "doesn't matter",
+                                AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
+
+       this.employees.save(new Employee("Henrik", "Larsson", "Striker", martin));
+
+        SecurityContextHolder.getContext()
+                .setAuthentication(new UsernamePasswordAuthenticationToken
+                        ("Jock", "doesn't matter",
+                                AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
+
+       this.employees.save(new Employee("Ronnie", "Simpson", "Goalkeeper", jock));
+       this.employees.save(new Employee("Jim", "Craig", "Right Back", jock));
+       this.employees.save(new Employee("Tommy", "Gemmel", "Left Back", jock));
+       this.employees.save(new Employee("Bobby", "Murdoch", "Right Half", jock));
+       this.employees.save(new Employee("Billy", "McNeill", "Centre Half", jock));
+       this.employees.save(new Employee("John", "Clark", "Centre Half", jock));
+       this.employees.save(new Employee("Jimmy", "Johnstone", "Outside Right", jock));
+       this.employees.save(new Employee("Willie", "Wallace", "Centre Forward", jock));
+       this.employees.save(new Employee("Stevie", "Chalmers", "Centre Forward", jock));
+       this.employees.save(new Employee("Bertie", "Auld", "Left Half", jock));
+       this.employees.save(new Employee("Bobby", "Lennox", "Outside Left", jock));
+
+       SecurityContextHolder.clearContext();
+
     }
 }

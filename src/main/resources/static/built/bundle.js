@@ -101,6 +101,15 @@
 	                    path: employeeCollection.entity._links.profile.href,
 	                    headers: { 'Accept': 'application/schema+json' }
 	                }).then(function (schema) {
+	
+	                    Object.keys(schema.entity.properties).forEach(function (property) {
+	                        if (schema.entity.properties[property].hasOwnProperty('format') && schema.entity.properties[property].format === 'uri') {
+	                            delete schema.entity.properties[property];
+	                        } else if (schema.entity.properties[property].hasOwnProperty('$ref')) {
+	                            delete schema.entity.properties[property];
+	                        }
+	                    });
+	
 	                    _this2.schema = schema.entity;
 	                    _this2.links = employeeCollection.entity._links;
 	                    return employeeCollection;
@@ -149,6 +158,9 @@
 	            }).done(function (response) {
 	                //This is now handled by websocket
 	            }, function (response) {
+	                if (response.status.code = 403) {
+	                    alert('ACCESS DENIED: You are not authorized to update ' + employee.entity._links.self.href);
+	                }
 	                if (response.status.code === 412) {
 	                    alert('DENIED: Unable to update ' + employee.entity._links.self.href + '. Your copy is stale.');
 	                }
@@ -157,8 +169,11 @@
 	    }, {
 	        key: 'onDelete',
 	        value: function onDelete(employee) {
-	            client({ method: 'DELETE',
-	                path: employee._links.self.href });
+	            client({ method: 'DELETE', path: employee._links.self.href }).done(function (response) {}, function (response) {
+	                if (response.status.code = 403) {
+	                    alert('ACCESS DENIED: You are not authorized to update ' + employee.entity._links.self.href);
+	                }
+	            });
 	        }
 	    }, {
 	        key: 'onNavigate',
@@ -619,6 +634,11 @@
 	                    'td',
 	                    null,
 	                    this.props.employee.entity.description
+	                ),
+	                React.createElement(
+	                    'td',
+	                    null,
+	                    this.props.employee.entity.manager.name
 	                ),
 	                React.createElement(
 	                    'td',
