@@ -1,5 +1,6 @@
-package org.iainbo.demo.demo;
+package org.iainbo.demo.demo.security;
 
+import org.iainbo.demo.demo.entities.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

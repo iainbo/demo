@@ -1,5 +1,8 @@
 package org.iainbo.demo.demo;
 
+import org.iainbo.demo.demo.entities.Employee;
+import org.iainbo.demo.demo.entities.Manager;
+import org.iainbo.demo.demo.repositories.ManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;

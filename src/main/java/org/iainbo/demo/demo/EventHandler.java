@@ -1,5 +1,6 @@
 package org.iainbo.demo.demo;
 
+import org.iainbo.demo.demo.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
 import org.springframework.data.rest.core.annotation.HandleAfterDelete;

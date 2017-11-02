@@ -1,6 +1,7 @@
-package org.iainbo.demo.demo;
+package org.iainbo.demo.demo.repositories;
 
 
+import org.iainbo.demo.demo.entities.Manager;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

@@ -1,4 +1,4 @@
-package org.iainbo.demo.demo;
+package org.iainbo.demo.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -26,7 +26,8 @@ public class Manager {
         this.password = PASSWORD_ENCODER.encode(password);
     }
 
-    protected Manager(){}
+    //Changed to public for adding packages
+    public Manager(){}
 
     public Manager(String name, String password, String... roles){
         this.name = name;

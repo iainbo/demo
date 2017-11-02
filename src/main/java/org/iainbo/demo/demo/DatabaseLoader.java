@@ -1,5 +1,9 @@
 package org.iainbo.demo.demo;
 
+import org.iainbo.demo.demo.entities.Employee;
+import org.iainbo.demo.demo.entities.Manager;
+import org.iainbo.demo.demo.repositories.EmployeeRepository;
+import org.iainbo.demo.demo.repositories.ManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

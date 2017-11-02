@@ -1,5 +1,7 @@
-package org.iainbo.demo.demo;
+package org.iainbo.demo.demo.security;
 
+import org.iainbo.demo.demo.entities.Manager;
+import org.iainbo.demo.demo.repositories.ManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;

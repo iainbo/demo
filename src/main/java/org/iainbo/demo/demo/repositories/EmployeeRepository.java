@@ -1,5 +1,6 @@
-package org.iainbo.demo.demo;
+package org.iainbo.demo.demo.repositories;
 
+import org.iainbo.demo.demo.entities.Employee;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;

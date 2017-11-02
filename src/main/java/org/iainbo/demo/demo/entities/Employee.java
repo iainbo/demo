@@ -1,4 +1,4 @@
-package org.iainbo.demo.demo;
+package org.iainbo.demo.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -17,7 +17,8 @@ public class Employee {
 
     private @Version @JsonIgnore Long version;
 
-    private @ManyToOne Manager manager;
+    private @ManyToOne
+    Manager manager;
 
     private Employee(){
 
