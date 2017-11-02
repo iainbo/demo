@@ -1,5 +1,6 @@
 package org.iainbo.demo.demo.entities;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -15,7 +16,7 @@ public class EmployeeTest {
         Long id = 1L;
         Long version = 1L;
 
-        String firstName = "Test";
+        String firstName = "JUnit Test";
         String lastName = "User";
         String description  = "User for Test";
 

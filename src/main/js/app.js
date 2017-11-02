@@ -158,7 +158,7 @@ class App extends React.Component{
             rel: 'employees',
             params: {size: this.state.pageSize}
         }]).done(response => {
-            if(response.entity_links.last !== undefined){
+            if(response.entity._links.last !== undefined){
                 this.onNavigate(response.entity._links.last.href);
             }else{
                 this.onNavigate(response.entity._links.self.href);
