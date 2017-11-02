@@ -112,7 +112,7 @@ class App extends React.Component{
     }
 
     onDelete(employee){
-        client({method: 'DELETE', path: employee._links.self.href}
+        client({method: 'DELETE', path: employee.entity._links.self.href}
         ).done(response => {},
             response =>{
                 if(response.status.code = 403){
