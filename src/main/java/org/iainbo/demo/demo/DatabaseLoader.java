@@ -35,6 +35,7 @@ public class DatabaseLoader implements CommandLineRunner{
                                 AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
        this.employees.save(new Employee("Henrik", "Larsson", "Striker", martin));
+       this.employees.save(new Employee("User", "To Delete", "Test User", martin));
 
         SecurityContextHolder.getContext()
                 .setAuthentication(new UsernamePasswordAuthenticationToken
