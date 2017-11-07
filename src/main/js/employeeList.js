@@ -74,7 +74,7 @@ export class EmployeeList extends React.Component {
         return (
             <div>
                 {pageInfo}
-                <input ref="pageSize" defaultValue={this.props.pageSize} onInput={this.handleInput}/>
+                <input ref="pageSize" defaultValue={this.props.pageSize} onInput={this.handleInput} style={{marginBottom: 10 + 'px'}}/>
                 <table>
                     <tbody>
                     <tr>
