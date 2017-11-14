@@ -5,6 +5,7 @@ import{CreateDialog} from "./createDialog";
 
 const React = require('react');
 const ReactDOM = require('react-dom');
+//Rest to be updated to 2.0.0. Issue with follow -> then -> when.
 const when = require('when');
 const client = require('./client');
 

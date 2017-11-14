@@ -27,11 +27,11 @@ public class DatabaseLoader implements CommandLineRunner{
     public void run(String... strings) throws Exception{
 
         Manager jock = this.managers.save(new Manager("Jock", "password", "ROLE_MANAGER"));
-        Manager martin = this.managers.save(new Manager("Martin", "password", "ROLE_MANAGER"));
+        Manager martin = this.managers.save(new Manager("admin", "password", "ROLE_MANAGER"));
 
         SecurityContextHolder.getContext()
                 .setAuthentication(new UsernamePasswordAuthenticationToken
-                        ("Martin", "doesn't matter",
+                        ("admin", "doesn't matter",
                                 AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
        this.employees.save(new Employee("Henrik", "Larsson", "Striker", martin));
