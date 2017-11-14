@@ -2,6 +2,7 @@
 
 import{EmployeeList} from "./employeeList";
 import{CreateDialog} from "./createDialog";
+import{MenuBar} from "./menuBar";
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -206,6 +207,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                <MenuBar/>
                 <CreateDialog attributes={this.state.attributes} onCreate={this.onCreate}/>
                 <EmployeeList page={this.state.page}
                               employees={this.state.employees}
