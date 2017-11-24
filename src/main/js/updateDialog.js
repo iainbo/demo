@@ -33,20 +33,12 @@ export class UpdateDialog extends React.Component {
 
         return (
             <div>
-                <a href={"#" + dialogId}>Update</a>
+                <h2>Update an employee</h2>
 
-                <div id={dialogId} className="modalDialog">
-                    <div>
-                        <a href="#" title="Close" className="close">X</a>
-
-                        <h2>Update an employee</h2>
-
-                        <form>
-                            {inputs}
-                            <button onClick={this.handleSubmit}>Update</button>
-                        </form>
-                    </div>
-                </div>
+                <form>
+                    {inputs}
+                    <button onClick={this.handleSubmit}>Update</button>
+                </form>
             </div>
         )
     }

@@ -1,5 +1,9 @@
 'use strict';
 
+import Form from 'react-bootstrap/lib/Form';
+import Button from 'react-bootstrap/lib/Button';
+import style from 'bootstrap/dist/css/bootstrap.css';
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 
@@ -37,10 +41,10 @@ export class CreateDialog extends React.Component {
 
                         <h2>Create new employee</h2>
 
-                        <form>
+                        <Form>
                             {inputs}
-                            <button onClick={this.handleSubmit}>Create</button>
-                        </form>
+                            <Button bsStyle="primary" onClick={this.handleSubmit}>Create</Button>
+                        </Form>
                     </div>
                 </div>
             </div>

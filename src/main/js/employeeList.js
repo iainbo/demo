@@ -83,7 +83,6 @@ export class EmployeeList extends React.Component {
                         <th>Description</th>
                         <th>Manager</th>
                         <th></th>
-                        <th></th>
                     </tr>
                     {employees}
                     </tbody>
