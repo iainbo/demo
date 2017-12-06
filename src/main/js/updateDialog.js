@@ -1,5 +1,7 @@
 'use strict';
 
+import style from 'bootstrap/dist/css/bootstrap.css';
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 

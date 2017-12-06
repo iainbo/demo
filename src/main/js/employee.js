@@ -48,7 +48,7 @@ export class Employee extends React.Component {
                         <MenuItem eventKey="2" onClick={this.handleDelete}>Delete Employee</MenuItem>
                     </DropDownButton>
                 </td>
-                <div className="static-modal">
+
                     <Modal show={this.state.showModal} onHide={this.close}>
                         <Modal.Header>
                             <Modal.Title>Update Employee</Modal.Title>
@@ -59,7 +59,7 @@ export class Employee extends React.Component {
                                           onUpdate={this.props.onUpdate}/>
                         </Modal.Body>
                     </Modal>
-                </div>
+
             </tr>
         )
     }
