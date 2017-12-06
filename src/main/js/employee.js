@@ -38,7 +38,9 @@ export class Employee extends React.Component {
             <tr>
                 <td>{this.props.employee.entity.firstName}</td>
                 <td>{this.props.employee.entity.lastName}</td>
-                <td>{this.props.employee.entity.description}</td>
+                <td>{this.props.employee.entity.phoneNumber}</td>
+                <td>{this.props.employee.entity.emailAddress}</td>
+                <td>{this.props.employee.entity.address}</td>
                 <td>{this.props.employee.entity.manager.name}</td>
                 <td>
                     <DropDownButton bsStyle="danger" title="More Actions" key={2} id={'dropdown-basic${2}'}>

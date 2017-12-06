@@ -1,6 +1,8 @@
 'use strict';
 
-import{Employee} from './employee'
+import{Employee} from './employee';
+import style from 'bootstrap/dist/css/bootstrap.css';
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 
@@ -80,7 +82,9 @@ export class EmployeeList extends React.Component {
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Description</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Address</th>
                         <th>Manager</th>
                         <th></th>
                     </tr>

@@ -13,7 +13,9 @@ public class Employee {
     private @Id @GeneratedValue Long id;
     private String firstName;
     private String lastName;
-    private String description;
+    private String phoneNumber;
+    private String emailAddress;
+    private String address;
 
     private @Version @JsonIgnore Long version;
 
@@ -24,10 +26,12 @@ public class Employee {
 
     }
 
-    public Employee(String firstName, String lastName, String description, Manager manager){
+    public Employee(String firstName, String lastName, String phoneNumber, String emailAddress, String address, Manager manager){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.description = description;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.address = address;
         this.manager = manager;
     }
 }

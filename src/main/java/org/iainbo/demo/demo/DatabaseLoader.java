@@ -34,25 +34,28 @@ public class DatabaseLoader implements CommandLineRunner{
                         ("admin", "doesn't matter",
                                 AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
-       this.employees.save(new Employee("Henrik", "Larsson", "Striker", martin));
-       this.employees.save(new Employee("User", "To Delete", "Test User", martin));
+       //this.employees.save(new Employee("Henrik", "Larsson", "Striker", martin));
+       //this.employees.save(new Employee("User", "To Delete", "Test User", martin));
+       this.employees.save(new Employee("User", "To Delete", "1234 5678", "test1@email.com", "1 House, Somewhere", martin));
+       this.employees.save(new Employee("User", "To Update", "5678 1234", "test2@email.com", "2 House, Somewhere", martin));
 
         SecurityContextHolder.getContext()
                 .setAuthentication(new UsernamePasswordAuthenticationToken
                         ("Jock", "doesn't matter",
                                 AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
-       this.employees.save(new Employee("Ronnie", "Simpson", "Goalkeeper", jock));
-       this.employees.save(new Employee("Jim", "Craig", "Right Back", jock));
-       this.employees.save(new Employee("Tommy", "Gemmel", "Left Back", jock));
-       this.employees.save(new Employee("Bobby", "Murdoch", "Right Half", jock));
-       this.employees.save(new Employee("Billy", "McNeill", "Centre Half", jock));
-       this.employees.save(new Employee("John", "Clark", "Centre Half", jock));
-       this.employees.save(new Employee("Jimmy", "Johnstone", "Outside Right", jock));
-       this.employees.save(new Employee("Willie", "Wallace", "Centre Forward", jock));
-       this.employees.save(new Employee("Stevie", "Chalmers", "Centre Forward", jock));
-       this.employees.save(new Employee("Bertie", "Auld", "Left Half", jock));
-       this.employees.save(new Employee("Bobby", "Lennox", "Outside Left", jock));
+       this.employees.save(new Employee("User", "To Test", "5678 4321", "test3@email.com", "3 House, Somewhere", jock));
+       //this.employees.save(new Employee("Ronnie", "Simpson", "Goalkeeper", jock));
+       //this.employees.save(new Employee("Jim", "Craig", "Right Back", jock));
+       //this.employees.save(new Employee("Tommy", "Gemmel", "Left Back", jock));
+       //this.employees.save(new Employee("Bobby", "Murdoch", "Right Half", jock));
+       //this.employees.save(new Employee("Billy", "McNeill", "Centre Half", jock));
+       //this.employees.save(new Employee("John", "Clark", "Centre Half", jock));
+       //this.employees.save(new Employee("Jimmy", "Johnstone", "Outside Right", jock));
+       //this.employees.save(new Employee("Willie", "Wallace", "Centre Forward", jock));
+       //this.employees.save(new Employee("Stevie", "Chalmers", "Centre Forward", jock));
+       //this.employees.save(new Employee("Bertie", "Auld", "Left Half", jock));
+       //this.employees.save(new Employee("Bobby", "Lennox", "Outside Left", jock));
 
        SecurityContextHolder.clearContext();
 
