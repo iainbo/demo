@@ -1,6 +1,7 @@
 'use strict';
 
 import{Employee} from './employee';
+import Table from 'react-bootstrap/lib/Table';
 import style from 'bootstrap/dist/css/bootstrap.css';
 
 const React = require('react');
@@ -77,7 +78,7 @@ export class EmployeeList extends React.Component {
             <div>
                 {pageInfo}
                 <input ref="pageSize" defaultValue={this.props.pageSize} onInput={this.handleInput} style={{marginBottom: 10 + 'px'}}/>
-                <table>
+                <Table>
                     <tbody>
                     <tr>
                         <th>First Name</th>
@@ -90,7 +91,7 @@ export class EmployeeList extends React.Component {
                     </tr>
                     {employees}
                     </tbody>
-                </table>
+                </Table>
                 <div>
                     {navLinks}
                 </div>

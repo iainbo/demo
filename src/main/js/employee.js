@@ -73,12 +73,11 @@ export class Employee extends React.Component {
 
                     <Modal show={this.state.showModal} onHide={this.close}>
                         <Modal.Header>
-                            <Modal.Title>Update Employee</Modal.Title>
+                            <Modal.Title>Update {this.props.employee.entity.firstName} {this.props.employee.entity.lastName}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <div>
-                                <h2>Update an employee</h2>
-
+                                <h2>Update employee details</h2>
                                 <Form>
                                     {inputs}
                                 </Form>
