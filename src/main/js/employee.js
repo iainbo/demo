@@ -4,6 +4,7 @@ import DropDownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Form from 'react-bootstrap/lib/Form';
 import style from 'bootstrap/dist/css/bootstrap.css';
 
@@ -82,8 +83,10 @@ export class Employee extends React.Component {
                                     {inputs}
                                 </Form>
                             </div>
-                            <Button onClick={this.handleSubmit}>Update</Button>
-                            <Button onClick={this.close}>Cancel</Button>
+                            <ButtonToolbar>
+                                <Button onClick={this.handleSubmit}>Update</Button>
+                                <Button onClick={this.close}>Cancel</Button>
+                            </ButtonToolbar>
                         </Modal.Body>
                     </Modal>
 
